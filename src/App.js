@@ -1,23 +1,26 @@
-import logo from './logo.svg';
 import './App.css';
+import { Routes, Route } from 'react-router-dom';
+import HandleImages from './components/images/image';
+import { useEffect, useState } from 'react';
+import IndividualImage from './components/individualImage/individualImage';
 
 function App() {
+  const [loading, setLoading] = useState(true);
+  const [data, setData] = useState(null);
+  useEffect(() => {
+    (async () => {
+      const fetchImages = await fetch("https://www.reddit.com/r/pics/.json?jsonp=");
+      const dataFetchImages = await fetchImages.json();
+      setData(dataFetchImages.data.children);
+      setLoading(false);
+    })();
+  }, []);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Routes>
+        <Route path="/" element={<HandleImages loading={loading} data={data} />} />
+        <Route path="/:id" element={<IndividualImage data={data} />} />
+      </Routes>
     </div>
   );
 }

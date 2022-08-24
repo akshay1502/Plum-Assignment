@@ -1,0 +1,16 @@
+p {
+  margin: 16px 0;
+}
+.imgContainer {
+  display: flex;
+  justify-content: center;
+}
+.imgContainer > img {
+  height: 500px;
+  aspect-ratio: 10 / 10;
+}
+@media screen and (max-width: 450px) {
+  .imgContainer > img {
+    height: 300px;
+  }
+}
