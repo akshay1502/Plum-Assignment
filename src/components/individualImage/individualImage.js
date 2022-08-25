@@ -11,22 +11,26 @@ export default function IndividualImage({ data }) {
       setImageData(result.data);
     }
   }, [id, data]);
+  const handleImageError = (e, url) => {
+    const result = /\.(jpeg|jpg|gif|png)$/.test(url);
+    e.target.src = result ? url : 'default.png';
+  }
   return(
-    <div>
+    <>
       { !data || !imageData
-        ? 'Loading'
-        : (<div>
+        ? <p style={{ textAlign: 'center' }}>Loading</p>
+        : (<>
           <h2>{imageData.title}</h2>
-          <p><span style={{ color: 'grey' }}>Clicked by </span>{imageData.author}</p>
+          <p className="author"><span>Clicked by </span>{imageData.author}</p>
           <div className="imgContainer">
             <img 
               src={imageData.thumbnail} 
-              onError={(e) => e.target.src = imageData.url} 
+              onError={(e) => handleImageError(e, imageData.url)} 
               alt={imageData.title} 
             />
           </div>
-        </div>)
+        </>)
       }
-    </div>
+    </>
   );
 }

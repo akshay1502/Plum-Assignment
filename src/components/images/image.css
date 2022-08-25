@@ -1,5 +1,9 @@
-h1 {
-  margin-bottom: 24px;
+.selection_group{
+  margin: 24px 0;
+}
+select {
+  padding: 4px;
+  margin-right: 16px;
 }
 .renderImages {
   display: flex;
@@ -8,14 +12,19 @@ h1 {
   justify-content: space-evenly;
 }
 .cardContainer {
+  display: flex;
+  flex-direction: column;
+}
+.card {
   width: 300px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  margin: 16px 0;
+  margin: 16px 0 8px 0;
   display: inline-block;
   color: black;
   text-decoration: none;
+  flex-grow: 1;
 }
-.cardContainer > img {
+.card > img {
   width: 100%;
   aspect-ratio: 10 / 10;
   object-fit: cover;
@@ -23,4 +32,7 @@ h1 {
 .imgTitle {
   background: rgb(248, 248, 248);
   padding: 16px;
+}
+.metaData {
+  text-align: center;
 }

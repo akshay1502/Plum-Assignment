@@ -1,5 +1,8 @@
-p {
+.author {
   margin: 16px 0;
+}
+.author > span {
+  color: grey;
 }
 .imgContainer {
   display: flex;
